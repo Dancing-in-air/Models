@@ -9,8 +9,19 @@ from selenium.webdriver.common.by import By
 from urllib.parse import quote
 from pyquery import PyQuery as pq
 
-browser = webdriver.Chrome()
-waite = WebDriverWait(browser, 10)  # 设置延时时间
+
+chrome_options = webdriver.ChromeOptions()
+# 创建无界面浏览
+chrome_options.add_argument("--headless")
+# 禁用Gpu渲染
+chrome_options.add_argument("--disable-gpu")
+# 禁用图片加载
+prefs = {"profile.default_content_setting_values": {"images": 2}}
+chrome_options.add_experimental_option("prefs", prefs)
+# 创建Chrome浏览器对象
+browser = webdriver.Chrome(chrome_options=chrome_options)
+# 设置延时时间
+waite = WebDriverWait(browser, 10)
 
 
 def index_page(page, key_word):
@@ -45,7 +56,7 @@ def get_products():
             "price": item.find(".price").text(),
             "title": item.find(".title").text(),
             "shop": item.find(".shop").text(),
-            "location": item.find(".locaiont").text()
+            "location": item.find(".location").text()
         }
         print(product)
 
