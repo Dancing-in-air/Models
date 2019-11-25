@@ -1,3 +1,6 @@
+""""
+使用Selenium模块抓取淘宝网商品信息
+"""
 from selenium import webdriver
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support.wait import WebDriverWait
