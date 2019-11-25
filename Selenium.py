@@ -27,7 +27,8 @@ waite = WebDriverWait(browser, 10)
 def index_page(page, key_word):
     print(f"正在抓取第{page}页")
     try:
-        url = "https://s.taobao.com/search?q" + quote(key_word)  # 对key_word进行编码
+        # 对key_word进行编码操作后,组成完整查询地址
+        url = "https://s.taobao.com/search?q" + quote(key_word)
         browser.get(url)
         if page > 1:
             # 延时定位输入框,在设定时间范围内返回结果,若没有结果抛出异常
